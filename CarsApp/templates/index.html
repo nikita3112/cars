@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars</title>
+</head>
+<body>
+    <form action="" method="GET">
+        <input type="text" name="manufacturer" placeholder="Поиск по марке"><br>
+        <input type="checkbox" name="transmission_mkpp">МКПП<br>
+        <input type="checkbox" name="transmission_akpp">АКПП<br>
+        <input type="checkbox" name="transmission_robot">Робот<br>
+        <label>Год выпуска
+            <input type="number" name="year_from" placeholder="от">
+            <input type="number" name="year_to" placeholder="до">
+        </label><br>
+        <button type="submit">Найти</button>
+        <button class="reset" type="reset">Сбросить</button>
+    </form>
+    <ul>
+        {% for car in cars %}
+            <li>
+                <img src="{{ car.photo.url }}" alt="" width="300" height="200">
+                <h3>{{ car.manufacturer }}</h3>
+                <p>{{ car.model }}</p>
+                <p>{{ car.year }}</p>
+                <p>{{ car.transmission }}</p>
+                <p>{{ car.color }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        const btn = document.querySelector('.reset');
+        btn.addEventListener('click', () => {
+            window.location.replace('http://127.0.0.1:8000')
+        });
+    </script>
+</body>
+</html>
